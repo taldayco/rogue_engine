@@ -3,6 +3,7 @@
 #include <map>
 #include <string>
 
+namespace rogue_engine {
 class TextureCache {
 public:
   TextureCache();
@@ -13,3 +14,4 @@ public:
 private:
   std::map<std::string, GLTexture> _textureMap;
 };
+} // namespace rogue_engine

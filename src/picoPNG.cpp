@@ -1,5 +1,8 @@
-#include "../headers/picoPNG.h"
 #include <vector>
+
+#include "../headers/picoPNG.h"
+
+namespace rogue_engine {
 
 /*
 decodePNG: The picoPNG function, decodes a PNG file buffer in memory, into a raw
@@ -933,6 +936,7 @@ int decodePNG(std::vector<unsigned char> &out_image, unsigned long &image_width,
   return decoder.error;
 }
 
+} // namespace rogue_engine
 // an example using the PNG loading function:
 
 #include <fstream>
@@ -967,8 +971,9 @@ int picoPNG_main(int argc, char *argv[]) {
   std::vector<unsigned char> buffer, image;
   loadFile(buffer, filename);
   unsigned long w, h;
-  int error = decodePNG(image, w, h, buffer.empty() ? 0 : &buffer[0],
-                        (unsigned long)buffer.size());
+  int error =
+      rogue_engine::decodePNG(image, w, h, buffer.empty() ? 0 : &buffer[0],
+                              (unsigned long)buffer.size());
 
   // if there's an error, display it
   if (error != 0)
@@ -980,6 +985,7 @@ int picoPNG_main(int argc, char *argv[]) {
     std::cout << "width: " << w << " height: " << h
               << " first pixel: " << std::hex << int(image[0]) << int(image[1])
               << int(image[2]) << int(image[3]) << std::endl;
+  return 0;
 }
 
 /*

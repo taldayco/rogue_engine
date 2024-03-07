@@ -2,6 +2,7 @@
 #include "../headers/ImageLoader.h"
 #include <iostream>
 
+namespace rogue_engine {
 TextureCache::TextureCache() {}
 
 TextureCache::~TextureCache() {}
@@ -26,3 +27,4 @@ GLTexture TextureCache::getTexture(std::string texturePath) {
   std::cout << "Use Cached Texture!\n";
   return mit->second;
 }
+} // namespace rogue_engine

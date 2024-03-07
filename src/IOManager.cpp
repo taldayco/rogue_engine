@@ -1,6 +1,7 @@
 #include "../headers/IOManager.h"
 #include <fstream>
 
+namespace rogue_engine {
 bool IOManager::readFileToBuffer(std::string filePath,
                                  std::vector<unsigned char> &buffer) {
   std::ifstream file(filePath, std::ios::binary);
@@ -25,3 +26,4 @@ bool IOManager::readFileToBuffer(std::string filePath,
 
   return true;
 };
+} // namespace rogue_engine

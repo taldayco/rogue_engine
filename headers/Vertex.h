@@ -1,6 +1,7 @@
 #pragma once
 #include <GL/glew.h>
 
+namespace rogue_engine {
 struct Position {
   float x;
   float y;
@@ -45,3 +46,4 @@ struct Vertex {
     uv.v = v;
   }
 };
+} // namespace rogue_engine

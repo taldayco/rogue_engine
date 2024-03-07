@@ -1,8 +1,10 @@
 #include "../headers/Sprite.h"
 #include "../headers/ResourceManager.h"
 #include "../headers/Vertex.h"
+
 #include <cstddef>
 
+namespace rogue_engine {
 Sprite::Sprite() { _vboID = 0; }
 
 Sprite::~Sprite() {
@@ -93,3 +95,4 @@ void Sprite::draw() {
 
   glBindBuffer(GL_ARRAY_BUFFER, 0);
 };
+} // namespace rogue_engine

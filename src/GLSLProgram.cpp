@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 
+namespace rogue_engine {
 GLSLProgram::GLSLProgram()
     : _numAttributes(0), _programID(0), _vertexShaderID(0),
       _fragmentShaderID(0) {}
@@ -131,3 +132,4 @@ void GLSLProgram::compileShaders(const std::string &filePath, GLuint id) {
     fatalError("Shader " + filePath + " Failed To Compile");
   }
 };
+} // namespace rogue_engine

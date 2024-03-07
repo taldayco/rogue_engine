@@ -3,6 +3,7 @@
 #include <GL/glew.h>
 #include <string>
 
+namespace rogue_engine {
 class GLSLProgram {
 public:
   GLSLProgram();
@@ -28,3 +29,4 @@ private:
   GLuint _vertexShaderID;
   GLuint _fragmentShaderID;
 };
+} // namespace rogue_engine

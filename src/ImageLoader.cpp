@@ -4,6 +4,7 @@
 #include "../headers/picoPNG.h"
 #include <vector>
 
+namespace rogue_engine {
 GLTexture ImageLoader::loadPNG(std::string filePath) {
   // create Texture and initialize values to 0
   GLTexture texture = {};
@@ -50,3 +51,4 @@ GLTexture ImageLoader::loadPNG(std::string filePath) {
 
   return texture;
 };
+} // namespace rogue_engine

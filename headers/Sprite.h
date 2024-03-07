@@ -3,6 +3,7 @@
 #include <GL/glew.h>
 #include <string>
 
+namespace rogue_engine {
 // A 2d quad that can be rendered to the scree
 class Sprite {
 public:
@@ -23,3 +24,4 @@ private:
   GLuint _vboID;
   GLTexture _texture;
 };
+} // namespace rogue_engine
