@@ -16,8 +16,8 @@ public:
 
   void swapBuffer();
 
-  int getScreenWidth() { _screenWidth; }
-  int getScreenHeight() { _screenHeight; }
+  int getScreenWidth() { return _screenWidth; }
+  int getScreenHeight() { return _screenHeight; }
 
 private:
   SDL_Window *_sdlWindow;

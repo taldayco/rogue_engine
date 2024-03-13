@@ -50,6 +50,10 @@ int Window::create(std::string windowName, int screenWidth, int screenHeight,
   // enable vsync
   SDL_GL_SetSwapInterval(1);
 
+  // enable alpha blend
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
   return 0;
 };
 
