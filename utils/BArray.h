@@ -1,6 +1,9 @@
+#pragma once
 #include <algorithm>
 #include <vector>
 
+namespace rogue_engine{
+  
 class BArray {
 public:
   // Set all elements of the boolean array to false
@@ -33,3 +36,4 @@ public:
   static std::vector<bool> isNotOneOf(const std::vector<int> &a,
                                       std::initializer_list<int> values);
 };
+}
