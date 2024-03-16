@@ -1,18 +1,18 @@
-#include "../headers/RectF.h"
+#include "Rect.h"
 
 namespace rogue_engine {
 Rect::Rect() : _left(0), _top(0), _right(0), _bottom(0) {}
-Rect::Rect(float left, float top, float right, float bottom)
+Rect::Rect(int left, int top, int right, int bottom)
     : _left(left), _top(top), _right(right), _bottom(bottom) {}
 
 Rect::~Rect() {}
 
-float Rect::width() const { return _right - _left; }
-float Rect::height() const { return _bottom - _top; }
-float Rect::square() const { return width() * height(); }
+int Rect::width() const { return _right - _left; }
+int Rect::height() const { return _bottom - _top; }
+int Rect::square() const { return width() * height(); }
 
 // Sets the coordinates of the rectangle
-Rect &Rect::set(float left, float top, float right, float bottom) {
+Rect &Rect::set(int left, int top, int right, int bottom) {
   _left = left;
   _top = top;
   _right = right;
@@ -20,9 +20,9 @@ Rect &Rect::set(float left, float top, float right, float bottom) {
   return *this;
 }
 // Sets the position of the rectangle
-Rect &Rect::setPos(float x, float y) {
-  float width = this->width();
-  float height = this->height();
+Rect &Rect::setPos(int x, int y) {
+  int width = this->width();
+  int height = this->height();
   _left = x;
   _top = y;
   _right = x + width;
@@ -30,7 +30,7 @@ Rect &Rect::setPos(float x, float y) {
   return *this;
 }
 // shift rectangle by a given amound in the x and y direction
-Rect &Rect::shift(float x, float y) {
+Rect &Rect::shift(int x, int y) {
   _top += y;
   _bottom += y;
   _left += x;
@@ -38,7 +38,7 @@ Rect &Rect::shift(float x, float y) {
   return *this;
 }
 // resize rectangle
-Rect &Rect::resize(float w, float h) {
+Rect &Rect::resize(int w, int h) {
   _right = _left + w;
   _bottom = _top + h;
   return *this;
@@ -53,7 +53,7 @@ Rect &Rect::setEmpty() {
   return *this;
 };
 // finds the overlapping region between two rectangles and returns a new
-// rectangle representing that floatersection. if the rectangles do not overlap,
+// rectangle representing that intersection. if the rectangles do not overlap,
 // the resulting rectangle will have zero area, indicating an empty
 // intersection.
 Rect Rect::intersect(const Rect &other) const {
@@ -76,11 +76,11 @@ Rect Rect::unite(const Rect &other) const {
   return result;
 }
 
-// ensures that the rectangle contains the specified pofloat(x, y) by expanding
+// ensures that the rectangle contains the specified point (x, y) by expanding
 // the rectangle as necessary. If the rectangle is empty, it sets the rectangle
-// to be a single pofloatat (x, y). Otherwise, it adjusts the edges of the
-// rectangle to include the pofloatwhile maintaining the rectangle's integrity.
-Rect &Rect::unite(float x, float y) {
+// to be a single point at (x, y). Otherwise, it adjusts the edges of the
+// rectangle to include the point while maintaining the rectangle's integrity.
+Rect &Rect::unite(int x, int y) {
   if (isEmpty()) {
     return set(x, y, x + 1, y + 1);
   } else {
@@ -99,7 +99,7 @@ Rect &Rect::unite(float x, float y) {
 }
 Rect &Rect::unite(const glm::ivec2 &point) { return unite(point.x, point.y); }
 
-// determines whether a given pofloatis inside the rectangle defined by its four
+// determines whether a given point is inside the rectangle defined by its four
 // coordinates.
 bool Rect::inside(const glm::ivec2 &point) const {
   return point.x >= _left && point.x < _right && point.y >= _top &&
@@ -113,7 +113,7 @@ glm::ivec2 Rect::center() const {
 
 // creates and returns a new rectangle that is a shrunken version of the
 // original rectangle.
-Rect Rect::shrink(float d) const {
+Rect Rect::shrink(int d) const {
   return Rect(_left + d, _top + d, _right - d, _bottom - d);
 }
 
@@ -122,7 +122,18 @@ Rect Rect::shrink() const { return shrink(1); }
 
 // creates and returns a new rectangle that is a scaled version of the
 // original rectangle.
-Rect Rect::scale(float d) const {
+Rect Rect::scale(int d) const {
   return Rect(_left * d, _top * d, _right * d, _bottom * d);
+}
+
+// retrieves all of the points (coordinates) inside the rectangle
+std::vector<glm::ivec2> Rect::getPoints() const {
+  std::vector<glm::ivec2> points;
+  for (int i = _left; i <= _right; ++i) {
+    for (int j = _top; j <= _bottom; ++j) {
+      points.push_back(glm::ivec2(i, j));
+    }
+  }
+  return points;
 }
 } // namespace rogue_engine
